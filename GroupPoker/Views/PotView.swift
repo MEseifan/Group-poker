@@ -43,6 +43,8 @@ struct PotView: View {
                 .disabled(game.pot == 0)
             }
 
+            undoRow
+
             if let banner = game.winnerBanner {
                 VStack(spacing: 6) {
                     Text(banner)
@@ -72,6 +74,28 @@ struct PotView: View {
         )
         .sheet(isPresented: $showAward) { awardSheet }
         .sheet(isPresented: $showBlindsEditor) { blindsSheet }
+    }
+
+    // MARK: - Undo
+
+    private var undoRow: some View {
+        VStack(spacing: 2) {
+            Button {
+                game.undo()
+            } label: {
+                Label(game.canUndo ? "Undo" : "Nothing to undo",
+                      systemImage: "arrow.uturn.backward")
+            }
+            .buttonStyle(PotButtonStyle(tint: .orange))
+            .disabled(!game.canUndo)
+
+            if let label = game.nextUndoLabel {
+                Text(label)
+                    .font(.caption2)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .lineLimit(1)
+            }
+        }
     }
 
     // MARK: - Sheets
