@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAAA0000000000000000D100 /* GroupPokerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000D000 /* GroupPokerApp.swift */; };
+		AAAA0000000000000000D300 /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000D200 /* Chip.swift */; };
+		AAAA0000000000000000D500 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000D400 /* Player.swift */; };
+		AAAA0000000000000000D700 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000D600 /* GameState.swift */; };
+		AAAA0000000000000000D900 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000D800 /* SetupView.swift */; };
+		AAAA0000000000000000DB00 /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000DA00 /* ChipView.swift */; };
+		AAAA0000000000000000DD00 /* PlayerSeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000DC00 /* PlayerSeatView.swift */; };
+		AAAA0000000000000000DF00 /* PotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000DE00 /* PotView.swift */; };
+		AAAA0000000000000000E100 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000E000 /* TableView.swift */; };
+		AAAA0000000000000000E300 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000E200 /* Assets.xcassets */; };
+		AAAA0000000000000000E500 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000E400 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AAAA0000000000000000BC00 /* GroupPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAA0000000000000000D000 /* GroupPokerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPokerApp.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000D200 /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000D400 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000D600 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000D800 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000DA00 /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000DC00 /* PlayerSeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSeatView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000DE00 /* PotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000E000 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000E200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAAA0000000000000000E400 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAAA0000000000000000B200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAAA0000000000000000AA00 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000AC00 /* GroupPoker */,
+				AAAA0000000000000000AB00 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAAA0000000000000000AB00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000BC00 /* GroupPoker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAAA0000000000000000AC00 /* GroupPoker */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000D000 /* GroupPokerApp.swift */,
+				AAAA0000000000000000AD00 /* Models */,
+				AAAA0000000000000000AE00 /* Views */,
+				AAAA0000000000000000E200 /* Assets.xcassets */,
+				AAAA0000000000000000AF00 /* Preview Content */,
+			);
+			path = GroupPoker;
+			sourceTree = "<group>";
+		};
+		AAAA0000000000000000AD00 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000D200 /* Chip.swift */,
+				AAAA0000000000000000D400 /* Player.swift */,
+				AAAA0000000000000000D600 /* GameState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAAA0000000000000000AE00 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000D800 /* SetupView.swift */,
+				AAAA0000000000000000DA00 /* ChipView.swift */,
+				AAAA0000000000000000DC00 /* PlayerSeatView.swift */,
+				AAAA0000000000000000DE00 /* PotView.swift */,
+				AAAA0000000000000000E000 /* TableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAAA0000000000000000AF00 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000E400 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAAA0000000000000000BB00 /* GroupPoker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAAA0000000000000000C100 /* Build configuration list for PBXNativeTarget "GroupPoker" */;
+			buildPhases = (
+				AAAA0000000000000000B100 /* Sources */,
+				AAAA0000000000000000B200 /* Frameworks */,
+				AAAA0000000000000000B300 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GroupPoker;
+			productName = GroupPoker;
+			productReference = AAAA0000000000000000BC00 /* GroupPoker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAAA0000000000000000FF00 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AAAA0000000000000000BB00 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AAAA0000000000000000C000 /* Build configuration list for PBXProject "GroupPoker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAAA0000000000000000AA00;
+			productRefGroup = AAAA0000000000000000AB00 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAAA0000000000000000BB00 /* GroupPoker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAAA0000000000000000B300 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAAA0000000000000000E500 /* Preview Assets.xcassets in Resources */,
+				AAAA0000000000000000E300 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAAA0000000000000000B100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAAA0000000000000000D100 /* GroupPokerApp.swift in Sources */,
+				AAAA0000000000000000D300 /* Chip.swift in Sources */,
+				AAAA0000000000000000D500 /* Player.swift in Sources */,
+				AAAA0000000000000000D700 /* GameState.swift in Sources */,
+				AAAA0000000000000000D900 /* SetupView.swift in Sources */,
+				AAAA0000000000000000DB00 /* ChipView.swift in Sources */,
+				AAAA0000000000000000DD00 /* PlayerSeatView.swift in Sources */,
+				AAAA0000000000000000DF00 /* PotView.swift in Sources */,
+				AAAA0000000000000000E100 /* TableView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AAAA0000000000000000C200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AAAA0000000000000000C300 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		AAAA0000000000000000C400 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GroupPoker/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouppoker.GroupPoker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		AAAA0000000000000000C500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GroupPoker/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grouppoker.GroupPoker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAAA0000000000000000C000 /* Build configuration list for PBXProject "GroupPoker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAA0000000000000000C200 /* Debug */,
+				AAAA0000000000000000C300 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAAA0000000000000000C100 /* Build configuration list for PBXNativeTarget "GroupPoker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAA0000000000000000C400 /* Debug */,
+				AAAA0000000000000000C500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAAA0000000000000000FF00 /* Project object */;
+}
