@@ -30,6 +30,7 @@ private struct GameSnapshot {
     let lastRaiseSize: Int
     let handNumber: Int
     let winnerBanner: String?
+    let currentActorIndex: Int?
 }
 
 @MainActor
@@ -49,6 +50,8 @@ final class GameState: ObservableObject {
     @Published var lastRaiseSize: Int = 0
     @Published var handNumber: Int = 0
     @Published var winnerBanner: String? = nil
+    /// Seat index of the player whose turn it is to act. `nil` between hands or at showdown.
+    @Published var currentActorIndex: Int? = nil
 
     // MARK: - Undo
     @Published private(set) var undoLabels: [String] = []
@@ -115,6 +118,38 @@ final class GameState: ObservableObject {
         // Blinds are forced — give both blinds the option to check/raise when action returns.
         players[sb].hasActedThisRound = false
         players[bb].hasActedThisRound = false
+        currentActorIndex = firstToActPreflop()
+    }
+
+    /// Preflop: action starts with the seat after the BB (UTG). Heads-up: dealer/SB acts first.
+    private func firstToActPreflop() -> Int? {
+        let liveCount = players.filter { $0.isInHand && $0.stack > 0 }.count
+        if liveCount == 2 {
+            return smallBlindIndex
+        }
+        guard let bb = bigBlindIndex else { return nil }
+        return nextSeatNeedingAction(from: bb)
+    }
+
+    /// Postflop: action starts at the first active seat clockwise from the dealer.
+    private func firstToActPostflop() -> Int? {
+        nextSeatNeedingAction(from: dealerIndex)
+    }
+
+    /// Walks clockwise from `start` (exclusive) to find the next seat that still needs
+    /// to act this round — in-hand, not all-in, and either hasn't acted or is under the bet.
+    private func nextSeatNeedingAction(from start: Int) -> Int? {
+        guard !players.isEmpty else { return nil }
+        var idx = start
+        for _ in 0..<players.count {
+            idx = (idx + 1) % players.count
+            let p = players[idx]
+            guard p.isInHand, !p.isAllIn else { continue }
+            if !p.hasActedThisRound || p.currentBet < currentBet {
+                return idx
+            }
+        }
+        return nil
     }
 
     /// Next active seat clockwise from `start`. If `inclusive`, `start` itself counts.
@@ -156,7 +191,7 @@ final class GameState: ObservableObject {
         let actual = min(amount, players[playerIndex].stack)
         pushUndo("\(players[playerIndex].name) bet $\(actual)")
         applyBet(playerIndex: playerIndex, amount: actual)
-        advanceIfRoundComplete()
+        advanceTurn(from: playerIndex)
     }
 
     /// Player matches the current bet.
@@ -169,7 +204,7 @@ final class GameState: ObservableObject {
         }
         pushUndo("\(players[playerIndex].name) call $\(need)")
         applyBet(playerIndex: playerIndex, amount: need)
-        advanceIfRoundComplete()
+        advanceTurn(from: playerIndex)
     }
 
     /// Player checks (only valid when currentBet is already matched).
@@ -178,7 +213,7 @@ final class GameState: ObservableObject {
         guard players[playerIndex].currentBet == currentBet else { return }
         pushUndo("\(players[playerIndex].name) check")
         players[playerIndex].hasActedThisRound = true
-        advanceIfRoundComplete()
+        advanceTurn(from: playerIndex)
     }
 
     /// Player folds.
@@ -193,7 +228,31 @@ final class GameState: ObservableObject {
             awardPotInternal(toPlayerIndex: remaining[0])
             return
         }
-        advanceIfRoundComplete()
+        advanceTurn(from: playerIndex)
+    }
+
+    /// Runs after every action — advances the round if everyone has acted, otherwise
+    /// moves the turn marker to the next seat that still owes action.
+    private func advanceTurn(from actor: Int) {
+        let stillIn = players.indices.filter { players[$0].isInHand }
+        if stillIn.count <= 1 {
+            currentActorIndex = nil
+            return
+        }
+
+        // Round complete?
+        let needsAction = stillIn.contains { idx in
+            let p = players[idx]
+            guard !p.isAllIn else { return false }
+            return !p.hasActedThisRound || p.currentBet < currentBet
+        }
+
+        if !needsAction {
+            advanceRound()
+            return
+        }
+
+        currentActorIndex = nextSeatNeedingAction(from: actor)
     }
 
     // MARK: - Internal: mutate without snapshotting
@@ -228,22 +287,6 @@ final class GameState: ObservableObject {
 
     // MARK: - Round inference
 
-    /// A round is complete when every player still in the hand has acted this round
-    /// and every non-all-in in-hand player has matched the current bet.
-    private func advanceIfRoundComplete() {
-        let stillIn = players.indices.filter { players[$0].isInHand }
-        guard stillIn.count > 1 else { return }
-
-        for idx in stillIn {
-            let p = players[idx]
-            if p.isAllIn { continue }
-            if !p.hasActedThisRound { return }
-            if p.currentBet < currentBet { return }
-        }
-
-        advanceRound()
-    }
-
     private func advanceRound() {
         for i in players.indices {
             players[i].currentBet = 0
@@ -252,6 +295,11 @@ final class GameState: ObservableObject {
         currentBet = 0
         lastRaiseSize = bigBlind
         if let next = round.next { round = next }
+        if round == .showdown {
+            currentActorIndex = nil
+        } else {
+            currentActorIndex = firstToActPostflop()
+        }
     }
 
     // MARK: - Declaring winner
@@ -268,6 +316,7 @@ final class GameState: ObservableObject {
         let amount = pot
         pot = 0
         winnerBanner = "\(winner) wins $\(amount)"
+        currentActorIndex = nil
         advanceDealerAndDealNext()
     }
 
@@ -291,6 +340,7 @@ final class GameState: ObservableObject {
         }
         winnerBanner = "Split: \(ordered.map { players[$0].name }.joined(separator: ", ")) win $\(pot)"
         pot = 0
+        currentActorIndex = nil
         advanceDealerAndDealNext()
     }
 
@@ -334,7 +384,8 @@ final class GameState: ObservableObject {
             currentBet: currentBet,
             lastRaiseSize: lastRaiseSize,
             handNumber: handNumber,
-            winnerBanner: winnerBanner
+            winnerBanner: winnerBanner,
+            currentActorIndex: currentActorIndex
         )
     }
 
@@ -347,6 +398,7 @@ final class GameState: ObservableObject {
         lastRaiseSize = s.lastRaiseSize
         handNumber = s.handNumber
         winnerBanner = s.winnerBanner
+        currentActorIndex = s.currentActorIndex
     }
 
     private func pushUndo(_ label: String) {

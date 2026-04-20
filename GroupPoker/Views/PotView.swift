@@ -6,13 +6,15 @@ struct PotView: View {
     @State private var showBlindsEditor: Bool = false
 
     var body: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 12) {
             Text(game.round.title)
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.white)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 6)
                 .background(Capsule().fill(Color.white.opacity(0.12)))
+
+            activeActorBadge
 
             Text("POT")
                 .font(.caption.weight(.bold))
@@ -44,24 +46,6 @@ struct PotView: View {
             }
 
             undoRow
-
-            if let banner = game.winnerBanner {
-                VStack(spacing: 6) {
-                    Text(banner)
-                        .font(.title3.weight(.bold))
-                        .foregroundStyle(.black)
-                    Button("Deal next hand") {
-                        game.dealNextHand()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.black)
-                }
-                .padding(12)
-                .background(
-                    RoundedRectangle(cornerRadius: 14)
-                        .fill(Color.yellow)
-                )
-            }
         }
         .padding(20)
         .background(
@@ -74,6 +58,29 @@ struct PotView: View {
         )
         .sheet(isPresented: $showAward) { awardSheet }
         .sheet(isPresented: $showBlindsEditor) { blindsSheet }
+    }
+
+    private var activeActorBadge: some View {
+        Group {
+            if let idx = game.currentActorIndex, game.players.indices.contains(idx) {
+                HStack(spacing: 6) {
+                    Circle()
+                        .fill(Color.yellow)
+                        .frame(width: 8, height: 8)
+                    Text("Waiting on \(game.players[idx].name)")
+                        .font(.callout.weight(.semibold))
+                        .foregroundStyle(.white)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 5)
+                .background(Capsule().fill(Color.yellow.opacity(0.18)))
+                .overlay(Capsule().strokeBorder(Color.yellow.opacity(0.6), lineWidth: 1))
+            } else if game.winnerBanner == nil {
+                Text("Hand complete — declare winner")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.7))
+            }
+        }
     }
 
     // MARK: - Undo

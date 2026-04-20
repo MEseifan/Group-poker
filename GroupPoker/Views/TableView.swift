@@ -21,9 +21,60 @@ struct TableView: View {
                     PlayerSeatView(playerIndex: idx, rotation: layout.rotation)
                         .position(layout.position)
                 }
+
+                // Winner banner — dimmed overlay so it never collides with seats
+                if let banner = game.winnerBanner {
+                    winnerOverlay(banner: banner)
+                        .transition(.opacity.combined(with: .scale))
+                }
             }
+            .animation(.easeInOut(duration: 0.2), value: game.winnerBanner)
         }
         .ignoresSafeArea()
+    }
+
+    private func winnerOverlay(banner: String) -> some View {
+        ZStack {
+            Color.black.opacity(0.55)
+                .ignoresSafeArea()
+                .onTapGesture { /* swallow taps so nothing behind fires */ }
+
+            VStack(spacing: 18) {
+                Image(systemName: "crown.fill")
+                    .font(.system(size: 44))
+                    .foregroundStyle(.yellow)
+
+                Text(banner)
+                    .font(.largeTitle.weight(.bold))
+                    .foregroundStyle(.black)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Button {
+                    game.dealNextHand()
+                } label: {
+                    Label("Deal next hand", systemImage: "arrow.forward.circle.fill")
+                        .font(.title3.weight(.semibold))
+                        .frame(minWidth: 220)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .tint(.black)
+
+                Button("Undo") {
+                    game.undo()
+                }
+                .buttonStyle(.bordered)
+                .tint(.black)
+            }
+            .padding(32)
+            .frame(maxWidth: 480)
+            .background(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color.yellow)
+                    .shadow(color: .black.opacity(0.4), radius: 24, y: 8)
+            )
+        }
     }
 
     private var feltBackground: some View {

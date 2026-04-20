@@ -15,9 +15,19 @@ struct PlayerSeatView: View {
     private var isDealer: Bool { game.dealerIndex == playerIndex }
     private var isSmallBlind: Bool { game.smallBlindIndex == playerIndex }
     private var isBigBlind: Bool { game.bigBlindIndex == playerIndex }
+    private var isActive: Bool { game.currentActorIndex == playerIndex }
 
     var body: some View {
         VStack(spacing: 8) {
+            if isActive {
+                Text("YOUR TURN")
+                    .font(.caption.weight(.heavy))
+                    .tracking(3)
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 3)
+                    .background(Capsule().fill(Color.yellow))
+            }
             headerRow
             chipRow
             dropZone
@@ -30,11 +40,14 @@ struct PlayerSeatView: View {
                 .fill(player.hasFolded ? Color.black.opacity(0.55) : Color.black.opacity(0.4))
                 .overlay(
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .strokeBorder(borderColor, lineWidth: 2)
+                        .strokeBorder(borderColor, lineWidth: isActive ? 4 : 2)
                 )
         )
+        .shadow(color: isActive ? Color.yellow.opacity(0.7) : .clear,
+                radius: isActive ? 22 : 0)
         .rotationEffect(rotation)
         .opacity(player.hasFolded ? 0.55 : 1)
+        .animation(.easeInOut(duration: 0.25), value: isActive)
         .sheet(isPresented: $showRebuy) { rebuySheet }
     }
 
@@ -207,7 +220,8 @@ struct PlayerSeatView: View {
 
     private var borderColor: Color {
         if player.hasFolded { return .clear }
-        if isDealer { return .yellow }
+        if isActive { return .yellow }
+        if isDealer { return .yellow.opacity(0.7) }
         if isBigBlind { return .orange }
         if isSmallBlind { return .blue }
         return .white.opacity(0.25)
